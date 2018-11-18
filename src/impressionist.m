@@ -1,9 +1,10 @@
 % temporary script to run everything for impressionist rendering
 
 % read in image(s)
-img = im2double(imread(path));
+path = '../data/Amor-Psyche-Canova-wikipedia.jpg';
+img = im2double(imread('../data/Amor-Psyche-Canova-wikipedia.jpg'));
 
-sigma = 5;
-[blurred, edges] = get_edges(img, sigma)
+sigma = 15;
+[blurred, edges] = get_edges(img, sigma);
 
 % generate strokes
