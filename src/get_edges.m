@@ -1,16 +1,24 @@
-function [blurred, edges] = get_edges(img, sigma)
+function [blurred, blur_rgb, edges] = get_edges(img, sigma)
 [h,w,c] = size(img);
 
+xyz = img;
+blur_rgb = zeros(size(img));
 % convert image to grayscale as necessary
 if c == 3
-    xyz = rgb2xyz(img, 'ColorSpace', 'linear-rgb');
-    img = xyz(:,:,2);
+    xyz = rgb2xyz(xyz, 'ColorSpace', 'linear-rgb');
+    xyz = xyz(:,:,2);
 end
 
 % blur image with Gaussian kernel
 hsize = 2 * ceil(3 * sigma) + 1;
 g_filt = fspecial('gaussian', hsize, sigma);
-blurred = conv2(img, g_filt, 'same');
+blurred = conv2(xyz, g_filt, 'same');
+
+hsize = 2 * ceil(9 * sigma) + 1;
+g_filt = fspecial('gaussian', hsize, 3*sigma);
+blur_rgb(:,:,1) = conv2(img(:,:,1), g_filt, 'same');
+blur_rgb(:,:,2) = conv2(img(:,:,2), g_filt, 'same');
+blur_rgb(:,:,3) = conv2(img(:,:,3), g_filt, 'same');
 
 % get edges with Canny filter
 % Canny filter can find weak edges better than Sobel

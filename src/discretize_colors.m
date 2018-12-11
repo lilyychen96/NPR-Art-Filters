@@ -6,3 +6,5 @@ thresh = multithresh(img, 7);
 val = [0 thresh(2:end) 255];
 quant = imquantize(img, thresh, val);
 toc
+
+% segment and average surrounding colors for smoother gradient
