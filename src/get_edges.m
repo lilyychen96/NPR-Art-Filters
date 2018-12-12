@@ -16,9 +16,4 @@ blurred = conv2(img, g_filt, 'same');
 % Canny filter can find weak edges better than Sobel
 edges = edge(blurred, 'Canny');
 
-% check results
-% figure; imshow(img); title('original image');
-% figure; subplot 121; imshow(blurred); title('Gaussian blurred');
-% subplot 122; imshow(edges); title('Edges from Canny filter');
-
 end

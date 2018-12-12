@@ -15,3 +15,5 @@ subimg = edges(max(1,cy-d):min(h,cy+d), max(1,cx-d):min(w,cx+d));
 if sum(subimg(:)) > thresh
     nearby = true;
 end
+
+end

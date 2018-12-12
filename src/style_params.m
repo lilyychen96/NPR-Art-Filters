@@ -12,18 +12,20 @@ function [rmin,rmax,lmin,lmax,crange,thresh,img] = style_params(style,img)
     % img: input image (may or may not be altered)
     
 % NOTE: style params are not totally true to each art movement,
-% just approximate and generalized
+% just approximated and generalized
 
-h = size(img,1);
-rmin = round(h/500);
+h = size(img, 1);
+rmin = max(1, round(h/500));
+rmax = max(round(h/150), 5);
+lmin = round(style/2);
+lmax = max(2*style, round(h/25));
 
 if style <= 3
     % pointillist style tends to have short brush strokes and a greater
     % variation in color for adjacent areas
-    rmax = min(round(h/250),5);
-    lmin = 1;
-    lmax = round(1.5*style);
-    crange = [-5*(5-style),5*(5-style)];
+    rmax = max(1, ceil(h/125));
+    lmax = min(2*style, 3);
+    crange = [-5*(5-style), 5*(5-style)];
     thresh = 0;
     
 elseif style > 3 && style <= 7
@@ -34,11 +36,8 @@ elseif style > 3 && style <= 7
     hsv(hsv > 1) = 1;
     img = hsv2rgb(hsv);
     
-    rmax = min(floor(h/150),7);
-    lmin = round(h/100);
-    lmax = lmin*2*style;
-    crange = [-(10-style),3*(10-style)];
-    thresh = h/25;
+    crange = [-(10-style), 3*(10-style)];
+    thresh = 2;
     
 else
     % expressionist style tends to be more intense but darker, agitated
@@ -49,10 +48,10 @@ else
     hsv(hsv > 1) = 1;
     img = hsv2rgb(hsv);
     
-    rmax = min(floor(h/150),7);
-    lmin = style*2;
-    lmax = style*style;
-    crange = [-3*style,style];
-    thresh = h/50;
+    crange = [-3*style, style];
+    thresh = 5;
 end
+
+end
+
     
