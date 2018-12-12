@@ -1,0 +1,24 @@
+Amore e Psiche (by Antonio Canova)
+
+size(img) = [600, 600, 3]
+
+1
+Elapsed time is 234.890009 seconds.
+2
+Elapsed time is 194.612781 seconds.
+3
+Elapsed time is 196.282052 seconds.
+4
+Elapsed time is 336.621533 seconds.
+5
+Elapsed time is 331.099662 seconds.
+6
+Elapsed time is 317.843462 seconds.
+7
+Elapsed time is 322.495777 seconds.
+8
+Elapsed time is 549.045635 seconds.
+9
+Elapsed time is 594.448322 seconds.
+10
+Elapsed time is 527.655855 seconds.
