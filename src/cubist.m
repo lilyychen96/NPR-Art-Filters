@@ -1,4 +1,6 @@
-img = im2double(imread('../data/obama.jpg'));
+function new_img = cubist(img_in)
+
+img = im2double(imread(img_in));
 w = size(img, 2);
 h = size(img, 1);
 
@@ -106,5 +108,6 @@ end
 
 filler = imgaussfilt(img, 3);
 new_img(isnan(new_img)) = filler(isnan(new_img));
-figure;
-imshow(imgaussfilt(new_img, 4));
+new_img = imgaussfilt(new_img, 4);
+
+end
