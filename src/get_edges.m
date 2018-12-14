@@ -1,5 +1,5 @@
 function [blurred, edges] = get_edges(img, sigma)
-[h,w,c] = size(img);
+c = size(img,3);
 
 % convert image to grayscale as necessary
 if c == 3
