@@ -1,0 +1,12 @@
+Starry Night on the Rhone (by Vincent Van Gogh)
+
+size(img) = [600, 775, 3]
+
+1
+Elapsed time is 387.437584 seconds.
+2
+Elapsed time is 393.279552 seconds.
+5
+Elapsed time is 842.698236 seconds.
+10
+Elapsed time is 1566.500992 seconds.

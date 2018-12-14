@@ -10,7 +10,7 @@ function [rmin,rmax,lmin,lmax,crange,thresh,img] = style_params(style,img)
     % crange: color perturbance
     % thresh: number of edge pixels allowed
     % img: input image (may or may not be altered)
-    
+
 % NOTE: style params are not totally true to each art movement,
 % just approximated and generalized
 
@@ -27,7 +27,7 @@ if style <= 3
     lmax = min(2*style, 3);
     crange = [-5*(5-style), 5*(5-style)];
     thresh = 0;
-    
+
 elseif style > 3 && style <= 7
     % impressionist style tends to be vibrant with contrast between
     % opposing sides of the color wheel
@@ -35,10 +35,10 @@ elseif style > 3 && style <= 7
     hsv(:,:,2) = hsv(:,:,2) * 1.2;
     hsv(hsv > 1) = 1;
     img = hsv2rgb(hsv);
-    
+
     crange = [-(10-style), 3*(10-style)];
     thresh = 2;
-    
+
 else
     % expressionist style tends to be more intense but darker, agitated
     % make colors more vibrant/saturated to begin with
@@ -47,11 +47,9 @@ else
     hsv(:,:,3) = hsv(:,:,3) * 0.95;
     hsv(hsv > 1) = 1;
     img = hsv2rgb(hsv);
-    
+
     crange = [-3*style, style];
     thresh = 5;
 end
 
 end
-
-    
