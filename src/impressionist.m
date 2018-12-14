@@ -1,10 +1,8 @@
-% temporary script to run everything for impressionist rendering
-% clear all; close all;
+% script to run everything for impressionist rendering
+clear all; close all;
 
 % read in image
-% img = im2double(imread('../../Starry_Night_Over_the_Rhone.jpg'));
 img = im2double(imread('../data/Amor-Psyche-Canova-wikipedia.jpg'));
-% img = im2double(imread('../data/IMG_3094.jpg'));
 
 % user prompts about max image size
 disp('Change line 5 to desired image path, as needed.');
@@ -71,14 +69,14 @@ while sum(isnan(imout(:))) > stop_pt
     ind = randi(length(row));
     cx = col(ind);
     cy = row(ind);
-    
+
     theta = deg2rad(gdir(cy,cx));
     if theta == 0
         theta = (-1*round(rand)) * pi * rand;
     end
-    
+
     l = max(lmin, min(round(gmag(cy,cx)*h/15), lmax));
-    
+
     if near_edge(cx,cy,thresh,edges)
         r = min(rmin, randi(style));
     else
@@ -88,21 +86,20 @@ while sum(isnan(imout(:))) > stop_pt
     [mask] = define_stroke(edges,cx,cy,theta,l,r);
     [imout] = stroke_color(img,mask,imout,crange);
 end
-% toc
-% figure; imshow(imout)
+
 [row, col] = find(isnan(imout(:,:,1)));
-% tic
+
 for i = 1:length(row)
     cx = col(i);
     cy = row(i);
-    
+
     theta = deg2rad(gdir(cy,cx));
     if theta == 0
         theta = (-1*round(rand)) * pi * rand;
     end
-    
+
     l = max(lmin, min(round(gmag(cy,cx)*h/15), lmax));
-    
+
     if near_edge(cx,cy,thresh,edges)
         r = min(rmin, randi(style));
     else

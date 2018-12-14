@@ -2,8 +2,7 @@
 clear all; close all;
 
 % read in image(s)
-img = im2double(imread('../data/DSCF2657.jpg'));
-% img = im2double(imread('../data/Amor-Psyche-Canova-wikipedia.jpg'));
+img = im2double(imread('../data/Amor-Psyche-Canova-wikipedia.jpg'));
 
 % user prompts about max image size
 disp('Change line 5 to desired image path, as needed.');
@@ -57,7 +56,7 @@ if strcmp(v, '2018a') || strcmp(v, '2018b')
     DoS = 2 * (std2(edist) .^ 2);
     smooth_lab = imbilatfilt(im_lab, DoS);
     blur_rgb = lab2rgb(smooth_lab, 'Out', 'double');
-    
+
 else
     % use bfilter2, from
     % https://www.mathworks.com/matlabcentral/fileexchange/12191-bilateral-filtering
@@ -69,7 +68,7 @@ else
     sharpness_levels  = [3 14]; % soft quantization sharpness
     quant_levels      = 8;      % number of quantization levels
     min_edge_strength = 0.3;    % minimum gradient (for edges)
-    
+
     blur_rgb = bfilter2(img,w,sigma);
 end
 

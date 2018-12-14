@@ -1,10 +1,12 @@
+% https://www.mathworks.com/matlabcentral/fileexchange/12191-bilateral-filtering
+
 % BFILTER2 Two dimensional bilateral filtering.
 %    This function implements 2-D bilateral filtering using
 %    the method outlined in:
 %
-%       C. Tomasi and R. Manduchi. Bilateral Filtering for 
-%       Gray and Color Images. In Proceedings of the IEEE 
-%       International Conference on Computer Vision, 1998. 
+%       C. Tomasi and R. Manduchi. Bilateral Filtering for
+%       Gray and Color Images. In Proceedings of the IEEE
+%       International Conference on Computer Vision, 1998.
 %
 %    B = bfilter2(A,W,SIGMA) performs 2-D bilateral filtering
 %    for the grayscale or color image A. A should be a double
@@ -30,7 +32,7 @@ end
 %       min(A(:)) < 0 || max(A(:)) > 1
 % 	error(['Input image A must be a double precision ',...
 %            'matrix of size NxMx1 or NxMx3 on the closed ',...
-%            'interval [0,1].']);      
+%            'interval [0,1].']);
 % end
 % Verify bilateral filter window size.
 if ~exist('w','var') || isempty(w) || ...
@@ -63,21 +65,21 @@ dim = size(A);
 B = zeros(dim);
 for i = 1:dim(1)
    for j = 1:dim(2)
-      
+
          % Extract local region.
          iMin = max(i-w,1);
          iMax = min(i+w,dim(1));
          jMin = max(j-w,1);
          jMax = min(j+w,dim(2));
          I = A(iMin:iMax,jMin:jMax);
-      
+
          % Compute Gaussian intensity weights.
          H = exp(-(I-A(i,j)).^2/(2*sigma_r^2));
-      
+
          % Calculate bilateral filter response.
          F = H.*G((iMin:iMax)-i+w+1,(jMin:jMax)-j+w+1);
          B(i,j) = sum(F(:).*I(:))/sum(F(:));
-               
+
    end
    waitbar(i/dim(1));
 end
@@ -124,7 +126,7 @@ for i = 1:dim(1)
         B(i,j,1) = sum(sum(F.*I(:,:,1)))/norm_F;
         B(i,j,2) = sum(sum(F.*I(:,:,2)))/norm_F;
         B(i,j,3) = sum(sum(F.*I(:,:,3)))/norm_F;
-         
+
     end
     waitbar(i/dim(1));
 end
