@@ -17,7 +17,7 @@ if strcmp(v, '2017b')
     [ind, ~] = kmeans(im_ab,colors,'distance','sqEuclidean',...
         'Replicates',3);
     plabels = reshape(ind,h,w);
-%     imshow(plabels, []); title('image labeled by cluster index');
+%     figure; imshow(plabels, []); title('image labeled by cluster index');
     rgblabels = repmat(plabels,[1 1 3]);
     
     for k = 1:colors
@@ -29,9 +29,9 @@ if strcmp(v, '2017b')
         b = c(:,:,3);
         
         % find average value for each color channel
-        r(rgblabels(:,:,1) == k) = mean(r(rgblabels(:,:,1) == k));
-        g(rgblabels(:,:,2) == k) = mean(g(rgblabels(:,:,2) == k));
-        b(rgblabels(:,:,3) == k) = mean(b(rgblabels(:,:,3) == k));
+        r(rgblabels(:,:,1) == k) = mean(r(rgblabels(:,:,1) == k), 'omitnan');
+        g(rgblabels(:,:,2) == k) = mean(g(rgblabels(:,:,2) == k), 'omitnan');
+        b(rgblabels(:,:,3) == k) = mean(b(rgblabels(:,:,3) == k), 'omitnan');
         c(:,:,1) = r;
         c(:,:,2) = g;
         c(:,:,3) = b;
